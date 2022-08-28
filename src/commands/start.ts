@@ -12,6 +12,7 @@ export default new Command(
 	const { client } = interaction;
 	if (client.save.state !== 'idle')
 		return interaction.reply({ content: 'Une partie est déjà en cours!', ephemeral: true });
+	await interaction.deferReply();
 	let ids = process.env.PLAYERS_IDS!.split(',');
 	const susPlayerId = ids[Math.floor(Math.random() * ids.length)];
 	const word = await getWord();
@@ -29,5 +30,5 @@ export default new Command(
 		word: word
 	}
 	client.write();
-	interaction.reply(`${process.env.PLAYERS_MENTION} **LA PARTIE EST LANCÉE!**\nÀ vous de jouer! Bon courage...`);
+	interaction.editReply(`${process.env.PLAYERS_MENTION} **LA PARTIE EST LANCÉE!**\nÀ vous de jouer! Bon courage...`);
 });
