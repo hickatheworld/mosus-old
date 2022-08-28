@@ -63,7 +63,7 @@ export default new Command(slash.toJSON())
 					client.scores[voter] += points;
 					await channel.send(`<@${voter}> marque **${points}** points!`);
 				}
-				client.scores[client.save.host!] += susPoints;
+				client.scores[client.save.susPlayer!] += susPoints;
 				await channel.send(`<@${client.save.susPlayer}> marque **${susPoints}** points!`);
 				client.save = { state: 'idle' };
 				client.write();
